@@ -3,8 +3,6 @@ import numpy as np
 from types import SimpleNamespace
 from scipy import stats
 import numba as nb
-import matplotlib.pyplot as plt
-from scipy.spatial import cKDTree
 
 #setseed
 np.random.seed(42)
@@ -101,6 +99,7 @@ def initialization(variables, data):
     X = np.reshape(xTemp, -1)
     Y = np.reshape(yTemp, -1)
     induCoordinates = np.vstack((X, Y)).T
+    nIndu = len(induCoordinates)
     
     #define coordinates for Fine points
     x = np.linspace(minX, maxX, nFineX)
@@ -109,15 +108,6 @@ def initialization(variables, data):
     X = np.reshape(xTemp, -1)
     Y = np.reshape(yTemp, -1)
     fineCoordinates = np.vstack((X, Y)).T
-    
-    # Find nearest data points for each grid point
-    #tree = cKDTree(dataCoordinates)
-    #distances, indices = tree.query(induCoordinates, k=1)
-
-    # Filter out inducing points that are not close to any data points
-    #valid_mask = distances < covL*0.1 # Adjust threshold_distance as desired
-    #induCoordinates = induCoordinates[valid_mask]
-    nIndu = len(induCoordinates)
 
     #set up initial sample and mean of prior
     dIndu = mle * np.ones(nIndu)

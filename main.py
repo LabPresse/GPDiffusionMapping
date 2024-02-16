@@ -12,6 +12,5 @@ data = data_reader.data_reader(dataPath)
 #generate samples
 variables, dVect, pVect = model.analyze(data)
 
-# Plot
+# Plot Results
 plotting.plot_surface(variables, dVect, data)
-

@@ -2,14 +2,11 @@ import csv
 import numpy as np
 import matplotlib.pyplot as plt
 import functions
-import objects
 from types import SimpleNamespace
 from matplotlib import cm
 import ast
 import pickle
 import matplotlib
-import h5py
-
 
 def plot_contour_map(variables, dVect, data):
     """This function plots the mean of all dVect samples as a contour map."""

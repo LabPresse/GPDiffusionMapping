@@ -1,11 +1,9 @@
 import numpy as np
 from types import SimpleNamespace
 import functions
-import objects
 import copy
 import time
 import pickle
-import h5py
 
 #These are the necassary variables to run the Gibbs Sampler
 PARAMETERS = {
@@ -15,7 +13,7 @@ PARAMETERS = {
     'nInduY': 30,   #number of y grid points (total inducing points is nInduY*nInduX)
     'nFineX': 100,  #fine grid points in x
     'nFineY': 100,  #fine grid points in y (total fine points is nFineY*nFineX)
-    'nIndu': 0,     #exact # of inducingpoints after trimming
+    'nIndu': 0,     # of inducingpoints after trimming
 
     #Knowns to be evaluated
     'dataCoordinates': None,    #all points of each trajectory exepts final location
@@ -70,8 +68,7 @@ def analyze(data, nIter=1000, **kwargs):
 
     # Get number of iterations
     burnIter = 2*nIter
-    burnIter2 = 200
-    numTot = burnIter + burnIter2 + nIter
+    stabalizeIter = 200
 
     #vectors to store diffusion samples and their probabilities
     # h5 = h5py.File('Results.h5', 'w')
@@ -96,12 +93,6 @@ def analyze(data, nIter=1000, **kwargs):
         print(f"Iteration {i+1}/{burnIter}", end=" ")
         t = time.time()
         variables, accCount = functions.diffusionPointSampler(variables, data)
-        
-        #save the samples
-        # h5['P'][totIter] = variables.P
-        # h5['d'][totIter] = variables.dIndu
-
-        totIter += 1
 
         #update proposal size for next iteration
         accVect += accCount
@@ -113,20 +104,15 @@ def analyze(data, nIter=1000, **kwargs):
 
         print(f"({time.time()-t:.3f}s)")
 
-    ## BURN IN 2 ##
+    ## Stabalize proposal Magnitude ##
     # Set temperature back to 1 and acceptance to 0, and iterate 
     # a few times to find ideal magnitude of proposal to maintain healthy acceptance
     variables.temperature = 1
     accVect = np.zeros(np.shape(variables.dIndu))
-    for i in range(burnIter2):
-        print(f"Iteration {i+1}/{burnIter2}", end=" ")
+    for i in range(stabalizeIter):
+        print(f"Iteration {i+1}/{stabalizeIter}", end=" ")
         t = time.time()
         variables, accCount = functions.diffusionPointSampler(variables, data)
-
-        #save the sample
-        # h5['P'][totIter] = variables.P
-        # h5['d'][totIter] = variables.dIndu
-        totIter += 1
 
         #update proposal size for next iteration
         accVect += accCount
@@ -158,7 +144,6 @@ def analyze(data, nIter=1000, **kwargs):
         pVect[i] = variables.P
         if variables.P >= map_variables.P:
             map_variables = copy.deepcopy(variables)
-        totIter += 1
 
         print(f"({time.time()-t:.3f}s)")
         
