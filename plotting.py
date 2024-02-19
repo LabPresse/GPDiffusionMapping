@@ -60,15 +60,24 @@ def plot_surface(variables, dVect, data):
     shapedX = np.reshape(fineCoordinates[:,0], shape)
     shapedY = np.reshape(fineCoordinates[:,1], shape)
 
-    #generate contour plot
-    fig = plt.axes(projection='3d')
-    fig.plot_surface(shapedX, shapedY, shapedMap, cmap=cm.coolwarm)
-    fig.scatter3D(trajectories[:,0], trajectories[:,1], 0, color = "green", alpha = 0.1, label = "Particle Data")
-    
-    fig.set_xlabel(r"X ($\mu m$)")
-    fig.set_ylabel(r"Y ($\mu m$)")
-    fig.set_zlabel(r"Diff. Coefficient ($\mu m$)")
-    fig.set_title('Learned Diffusion Map')
+    # Initialize figure
+    fig = plt.figure()
+    plt.ion()
+    plt.show()
+    ax = fig.add_subplot(111, projection='3d')
 
-    fig.legend()
-    return fig
+    # Generate contour plot
+    ax = plt.axes(projection='3d')
+    ax.plot_surface(shapedX, shapedY, shapedMap, cmap=cm.coolwarm)
+    ax.scatter3D(trajectories[:,0], trajectories[:,1], 0, color = "green", alpha = 0.1, label = "Particle Data")
+    
+    # Finalize figure
+    ax.set_xlabel(r"X ($\mu m$)")
+    ax.set_ylabel(r"Y ($\mu m$)")
+    ax.set_zlabel(r"Diff. Coefficient ($\mu m$)")
+    ax.set_title('Learned Diffusion Map')
+    ax.legend()
+    plt.tight_layout()
+
+    # Return figure
+    return fig, ax

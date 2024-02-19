@@ -45,11 +45,12 @@ PARAMETERS = {
 
 # This function runs the Gibbs Sampler
 def analyze(data, nIter=1000, **kwargs):
-    #Progress Marker
+    
+    # Progress Marker
     print('Inititalization Started')
     startTime = time.time()
     
-    #initialize data and variables and time them
+    # Initialize data and variables and time them
     parameters = {**copy.deepcopy(PARAMETERS), **kwargs}
     variables = functions.initialization(parameters, data)
     endTime = time.time()
@@ -76,11 +77,11 @@ def analyze(data, nIter=1000, **kwargs):
     # h5.create_dataset(name='d', shape=(numTot,variables.nIndu), chunks=(1,variables.nIndu), dtype='f')
     # totIter = 0
 
-    #redefine perturbation magnitude for samples
+    # Redefine perturbation magnitude for samples
     variables.epsilon = np.ones(np.shape(variables.dIndu))
     startTime = time.time()
 
-    #initial temp and cooling rate for targeted annealing
+    # Initial temp and cooling rate for targeted annealing
     initTemp = 7.5
     coolRate = np.log(initTemp)/burnIter
 

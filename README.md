@@ -17,3 +17,14 @@ Any user of this package should only need to run the main.py file, and make any 
 
 ## Output
 Once done sampling the MAP Estimate Surface is automatically plotted and saved for the user in the output directory. In the subdirectory named samples, the package also saves all MCMC samples in a file called Samples.csv along with a file containing the probability associated with each MCMC sample called LogPosterior.csv.
+
+## Units:
+
+* Time: ms
+* Length: nm
+
+## TODO:
+
+* Capitalize comments everywhere
+* Remove unused code
+* Fix plotting fig vs ax issue

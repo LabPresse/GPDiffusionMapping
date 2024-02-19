@@ -1,16 +1,21 @@
-#imports
-import model
-import data_reader
-import numpy as np
+
+# Imports
 import os
+import numpy as np
+import matplotlib.pyplot as plt
+# Local imports
+import data_reader
+import model
 import plotting
 
-# load real data from csv File
+# Load real data from csv File
 dataPath = "data/simulated_flat_Dmap.csv"
 data = data_reader.data_reader(dataPath)
 
-#generate samples
-variables, dVect, pVect = model.analyze(data)
+# Generate samples
+variables, dVect, pVect = model.analyze(data, nIter=10)
 
 # Plot Results
 plotting.plot_surface(variables, dVect, data)
+plt.pause(1)
+
