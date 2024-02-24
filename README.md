@@ -1,5 +1,5 @@
 # GPDiffusionMapping
-Code for our diffusion coefficient mapping project.
+This is the repository for our Diffusion Mapping project from trajectory data, BioArXiV link. For ease of use It is organized so that any user only needs to interact with the main.py file. There is also a sample dataset provided in the /data dirctory that correlates to a flat Diffusion Map at 0.05 $\frac{\mu m^2}{s}$, where the data set has ~5000 localizations.
 
 ## Installation
 
@@ -15,16 +15,7 @@ pip install -r requirements.txt
 ## Usage
 Any user of this package should only need to run the main.py file, and make any possible edits there. All hyper parameters are directly tunable in the main.py file. The data file is assumed to be a .csv file that has 3 columns, organized as (Trajectory Label, Xposition, Yposition) and the first row is a header.
 
-## Output
-Once done sampling the MAP Estimate Surface is automatically plotted and saved for the user in the output directory. In the subdirectory named samples, the package also saves all MCMC samples in a file called Samples.csv along with a file containing the probability associated with each MCMC sample called LogPosterior.csv.
+## Assumed Units:
 
-## Units:
-
-* Time: ms
-* Length: nm
-
-## TODO:
-
-* Capitalize comments everywhere
-* Remove unused code
-* Fix plotting fig vs ax issue
+* Time: Seconds
+* Length: Nanometers
