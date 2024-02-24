@@ -22,7 +22,7 @@ def data_reader(path, scale=1, deltaT = 1/30):
 
     Args:
         path (str): Path to the CSV file.
-        scale (float): Scaling factor for data coordinates. Defaults to 1.
+        scale (float): Scaling factor to transform data to nm. Defaults to 1.
         deltaT (float): Time interval between each frame of data. Defaults to 1/30.
 
     Returns:
