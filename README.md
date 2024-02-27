@@ -19,6 +19,8 @@ source .env/bin/activate
 pip install -r requirements.txt
 ```
 
+Now you are ready to use the code by simply running the main.py file. Additional description provided below.
+
 ## Usage
 Any user of this package should only need to run the main.py file, and make any possible edits there. For analysis based on automated hyperparameters, one simply needs to change the dataPath to be the path of the data they would like analyzed. The data file needs to be a .csv file that has 3 columns, organized as (Trajectory Label, Xposition, Yposition) with the first row as a header. For those so inclined to have more control over the inference task, all hyperparameters are directly tunable in the main.py file. Simply find the name of the hyperparameter you would like to edit in the PARAMETERS object of the model.py file and pass it as a keyword arguement in the model.analyze() command of the main.py file. In this same function you can also pass the number of samples/iterations you would like to perform.
 
