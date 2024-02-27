@@ -11,9 +11,16 @@ python -m venv .env
 source .env/bin/activate
 pip install -r requirements.txt
 ```
+For those who do not have git, simply download the package as a Zip file via the green <>Code button above. Then unzip the file on your computer and open the directory in your favorite python editor. Then in the terminal run the last three of the commands from above:
+
+```bash
+python -m venv .env
+source .env/bin/activate
+pip install -r requirements.txt
+```
 
 ## Usage
-Any user of this package should only need to run the main.py file, and make any possible edits there. All hyper parameters are directly tunable in the main.py file. The data file is assumed to be a .csv file that has 3 columns, organized as (Trajectory Label, Xposition, Yposition) and the first row is a header.
+Any user of this package should only need to run the main.py file, and make any possible edits there. For analysis based on automated hyperparameters, one simply needs to change the dataPath to be the path of the data they would like analyzed. The data file needs to be a .csv file that has 3 columns, organized as (Trajectory Label, Xposition, Yposition) with the first row as a header. For those so inclined to have more control over the inference task, all hyperparameters are directly tunable in the main.py file. Simply find the name of the hyperparameter you would like to edit in the PARAMETERS object of the model.py file and pass it as a keyword arguement in the model.analyze() command of the main.py file. In this same function you can also pass the number of samples/iterations you would like to perform.
 
 ## Assumed Units:
 

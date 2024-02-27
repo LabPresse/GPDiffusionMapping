@@ -9,12 +9,12 @@ import data_reader
 import model
 import plotting
 
-# Load real data from csv File
-dataPath = "data/simulated_flat_Dmap.csv"
+# Load data from csv File
+dataPath = "data/simulated_flat_Dmap.csv" # REQUIRED: Change path to data file you would like to analyze
 data = data_reader.data_reader(dataPath)
 
 # Generate samples
-variables, dVect, pVect = model.analyze(data, nIter=50)
+variables, dVect, pVect = model.analyze(data) # OPTIONAL: Edit any hyperparameters as keyword arguements here
 
 # Plot Results
 plotting.plot(variables, dVect, pVect, data)
