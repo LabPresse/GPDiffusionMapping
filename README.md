@@ -1,45 +1,46 @@
 # GPDiffusionMapping
-This is the repository for our Diffusion Mapping project from trajectory data, BioArXiV link. For ease of use It is organized so that any user only needs to interact with the main.py file. There is also a sample dataset provided in the /data dirctory that correlates to a flat Diffusion Map at 0.05 $\frac{\mu m^2}{s}$, where the data set has ~5000 localizations.
+
+This is the repository for our Diffusion Mapping project from trajectory data, BioArXiV link. For ease of use, it is organized so that users only need to interact with the main.py file. A synthetic dataset is provided in the /data directory under /example that correlates to a flat Diffusion Map at 0.05 $\frac{\mu m^2}{s}$, where the data set has ~5000 localizations. The experimental data associated with our paper, https://www.biorxiv.org/content/10.1101/2024.02.27.582378v1, is also provided in the /data directory under /experimental.
 
 ## Installation
 
-#### Retrieve files locally:
+### Download
 
-To install the package any user only needs python, though git will make installation easier it is not necassary. A user who has git can simply run the following command in their terminal to retrieve all files locally:
+To download the package, simply clone this repository using `git` or click the green <>Code button above and select the download option. This will download the package as a Zip file to your computer. Unzip the file and open the directory in your favorite python editor.
 
-```bash
-git clone https://github.com/LabPresse/GPDiffusionMapping.git
-```
-For those who do not have git, simply download the package as a Zip file via the green <>Code button above. Then unzip the file on your computer and open the directory in your favorite python editor.
+#### Setup environment
 
-##### Setup environment
+In order to run the code you will need to set up a virtual environment and install the required packages. This can be done by running the following commands in the terminal or command prompt.
 
-Note that the process to setup the virtual environment with required python packages differes based on OS. Follow the one below that applies to you.
+##### Mac/Linux Users
 
-###### Mac/Linux Users
-
-In the terminal, with the /GPDiffusionMapping directory open, run the follwing:
+In the terminal, `cd` to the project directory and run the follwing:
 ```bash
 python -m venv .env
 source .env/bin/activate
 pip install -r requirements.txt
 ```
 
-###### Windows Users
+##### Windows Users
 
-In the Command Prompt/Terminal, with the /GPDiffusionMapping directory open, run the follwing:
+In the command prompt, `cd` to the project directory and run the follwing:
 ```bash
 python -m venv .env
 .env\Scripts\activate
 pip install -r requirements.txt
 ```
 
-Now you have all necassary packages loaded into a virual environment and are ready to use the code by simply running the main.py file. Additional description provided below.
-
 ## Usage
-Any user of this package should only need to run the main.py file, and make any possible edits there. For analysis based on automated hyperparameters, one simply needs to change the dataPath to be the path of the data they would like analyzed. The data file needs to be a .csv file that has 3 columns, organized as (Trajectory Label, Xposition, Yposition) with the first row as a header. For those so inclined to have more control over the inference task, all hyperparameters are directly tunable in the main.py file. Simply find the name of the hyperparameter you would like to edit in the PARAMETERS object of the model.py file and pass it as a keyword arguement in the model.analyze() command of the main.py file. In this same function you can also pass the number of samples/iterations you would like to perform.
 
-## Assumed Units:
+To run the code, simply run the main.py file in your favorite python editor. Change `dataPath` to the path of your data file.
+
+The data file should be a csv file with 3 columns: `particle #`, `xPos`, and `yPos`, where `particle #` is the particle number, `xPos` is the x position of the particle, and `yPos` is the y position of the particle. Position is measured in nanometers. Time steps are assumed to be taken at 30 Hz.
+
+The code will output an image and save it to the `output/` directory.
+
+The code is set to run with default hyperparameters, but the user can change the hyperparameters as needed by including them as keyword arguments in the `analyze` function. A dictionary of the hyperparameters can be found in `model.py`.
+
+## Assumed Units
 
 * Time: Seconds
 * Length: Nanometers
