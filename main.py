@@ -10,7 +10,7 @@ import model
 import plotting
 
 # Load data from csv File
-dataPath = "data/simulated_flat_Dmap.csv" # REQUIRED: Change path to data file you would like to analyze
+dataPath = "data/synthetic/simulated_flat_Dmap.csv" # REQUIRED: Change path to data file you would like to analyze
 data = data_reader.data_reader(dataPath)
 
 # Generate samples
